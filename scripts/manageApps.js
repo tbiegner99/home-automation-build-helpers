@@ -9,6 +9,7 @@ const {
   APP_FILENAME,
   APP_ROUTES,
   APP_PRIORITY,
+  APP_COMMIT,
   FUNCTION = "",
   SKIP_APP_CONFIG,
   APPS_DB_DIR = process.cwd(),
@@ -25,6 +26,7 @@ console.log("Params passed:", {
   APP_FILENAME,
   APP_ROUTES,
   APP_PRIORITY,
+  APP_COMMIT,
   FUNCTION,
   SKIP_APP_CONFIG,
   APPS_DB_DIR,
@@ -129,6 +131,7 @@ const addApplication = async () => {
     filename: APP_FILENAME,
     description: APP_DESCRIPTION,
     version: APP_VERSION,
+    build: APP_COMMIT,
     routes,
   };
   console.log("ADDING APP", appData);
