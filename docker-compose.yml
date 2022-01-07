@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  addApp:
+  manageApps:
     image: node:alpine
     container_name: router
     environment:
@@ -15,4 +15,4 @@ services:
       - ../:/srv/package/db
     working_dir: /srv/package
     user: root
-    command: node ./scripts/addApp.js
+    command: node ./scripts/manageApps.js
