@@ -9,6 +9,7 @@ const {
   APP_FILENAME,
   APP_ROUTES,
   APP_PRIORITY,
+  FUNCTION = "",
   SKIP_APP_CONFIG,
   APPS_DB_DIR = process.cwd(),
   APPS_CONFIG_DIR = process.cwd(),
@@ -24,6 +25,7 @@ console.log("Params passed:", {
   APP_FILENAME,
   APP_ROUTES,
   APP_PRIORITY,
+  FUNCTION,
   SKIP_APP_CONFIG,
   APPS_DB_DIR,
   APPS_CONFIG_DIR,
@@ -101,6 +103,13 @@ const saveAppsArray = async () => {
   await fs.writeFile(APPS_CONFIG_FILE, JSON.stringify(apps, null, 4));
 };
 
+const removeApplication = async (app) => {
+  const db = await loadAppsDB();
+  delete db[app];
+  await saveAppsDB(db);
+  await saveAppsArray();
+};
+
 const addApplication = async () => {
   await enforceRequiredParameters();
 
@@ -122,6 +131,7 @@ const addApplication = async () => {
     version: APP_VERSION,
     routes,
   };
+  console.log("ADDING APP", appData);
   const appDBEntry = { [APP_KEY]: appData };
   const db = await loadAppsDB();
   const newDb = Object.assign({}, db, appDBEntry);
@@ -163,8 +173,16 @@ const constructImportMap = async () => {
 const main = async () => {
   await initializeFiles();
 
-  if (isAddingApp()) {
+  const func = FUNCTION.toLowerCase();
+
+  if (func === "add" && isAddingApp()) {
     await addApplication();
+    console.log("APP Added");
+  } else if (func === "remove") {
+    console.log(`Removing App ${APP_KEY}`);
+    await enforceValidKey("APP_KEY", APP_KEY);
+    await removeApplication(APP_KEY);
+    console.log(`App removed ${APP_KEY}`);
   }
 
   await constructImportMap();
