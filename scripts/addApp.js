@@ -78,7 +78,7 @@ const loadAppsDB = async () => {
   return JSON.parse(content);
 };
 const saveAppsDB = async (db) => {
-  await fs.writeFile(APPS_DB_FILE, JSON.stringify(db));
+  await fs.writeFile(APPS_DB_FILE, JSON.stringify(db, null, 4));
 };
 
 const sortApps = (app1, app2) => {
@@ -98,7 +98,7 @@ const saveAppsArray = async () => {
   }
   const db = await loadAppsDB();
   const apps = Object.values(db).sort(sortApps);
-  await fs.writeFile(APPS_CONFIG_FILE, JSON.stringify(apps));
+  await fs.writeFile(APPS_CONFIG_FILE, JSON.stringify(apps, null, 4));
 };
 
 const addApplication = async () => {
