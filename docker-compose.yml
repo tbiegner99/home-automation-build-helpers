@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  addApp:
+    image: node:alpine
+    container_name: router
+    environment:
+      - "APPS_CONFIG_DIR=/srv/package/maps"
+      - "IMPORT_MAP_DIR=/srv/package/maps"
+      - "APPS_DB_DIR=/srv/package/db"
+      - "STATIC_ROUTES_FILE=/srv/package/config/statics.json"
+    volumes:
+      - ./scripts:/srv/package/scripts
+      - ./config:/srv/package/config
+      - ../content/config:/srv/package/maps
+      - ../:/srv/package/db
+    working_dir: /srv/package
+    user: root
+    command: node ./scripts/addApp.js
