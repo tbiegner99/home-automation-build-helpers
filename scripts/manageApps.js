@@ -41,7 +41,7 @@ const enforceRequired = (key, value) => {
 
 const enforceValidKey = async (key, value) => {
   await enforceRequired(key, value);
-  const validAppKey = /^[a-zA-Z0-9_]+(-?[_a-zA-Z0-9]+)*$/;
+  const validAppKey = /^[@a-zA-Z0-9_]+(-?[@_a-zA-Z0-9/]+)*$/;
   if (!value.match(validAppKey)) {
     throw new Error(key + " is not a valid key");
   }
