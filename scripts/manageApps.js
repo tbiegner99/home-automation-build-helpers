@@ -101,7 +101,9 @@ const saveAppsArray = async () => {
     return;
   }
   const db = await loadAppsDB();
-  const apps = Object.values(db).sort(sortApps);
+  const apps = Object.values(db)
+    .filter((app) => app.priority >= 0)
+    .sort(sortApps);
   await fs.writeFile(APPS_CONFIG_FILE, JSON.stringify(apps, null, 4));
 };
 
