@@ -11,7 +11,7 @@ services:
     volumes:
       - ./scripts:/srv/package/scripts
       - ./config:/srv/package/config
-      - ../content/config:/srv/package/maps
+      - ../home-automation-web-server/content/config:/srv/package/maps
       - ../:/srv/package/db
     working_dir: /srv/package
     user: root

@@ -1,5 +1,5 @@
-const fs = require('fs').promises;
-const path = require('path');
+const fs = require("fs").promises;
+const path = require("path");
 /* eslint-disable global-require */
 const {
   APP_KEY,
@@ -12,16 +12,52 @@ const {
   SKIP_APP_CONFIG,
   APPS_DB_DIR = process.cwd(),
   APPS_CONFIG_DIR = process.cwd(),
-  STATIC_ROUTES_FILE = path.join(process.cwd(), './config', '/statics.json'),
-  IMPORT_MAP_DIR = process.cwd()
+  STATIC_ROUTES_FILE = path.join(process.cwd(), "./config", "/statics.json"),
+  IMPORT_MAP_DIR = process.cwd(),
 } = process.env;
 
-const APPS_BASE_PATH = '/apps';
-const APPS_DB_FILE = path.join(APPS_DB_DIR, './appsDB.json');
-const APPS_CONFIG_FILE = path.join(APPS_CONFIG_DIR, './appsConfig.json');
-const IMPORT_MAP_FILE = path.join(IMPORT_MAP_DIR, './import-map.json');
+console.log("Params passed:", {
+  APP_KEY,
+  APP_TITLE,
+  APP_DESCRIPTION,
+  APP_VERSION,
+  APP_FILENAME,
+  APP_ROUTES,
+  APP_PRIORITY,
+  SKIP_APP_CONFIG,
+  APPS_DB_DIR,
+  APPS_CONFIG_DIR,
+  STATIC_ROUTES_FILE,
+  IMPORT_MAP_DIR,
+});
 
-const isAddingApp = () => Boolean(APP_KEY) && Boolean(APP_TITLE) && Boolean(APP_FILENAME);
+const enforceRequired = (key, value) => {
+  if (!Boolean(value)) {
+    throw new Error(key + " is required");
+  }
+};
+
+const enforceValidKey = async (key, value) => {
+  await enforceRequired(key, value);
+  const validAppKey = /^[a-zA-Z0-9_]+(-?[_a-zA-Z0-9]+)*$/;
+  if (!value.match(validAppKey)) {
+    throw new Error(key + " is not a valid key");
+  }
+};
+
+const enforceRequiredParameters = async () => {
+  await enforceValidKey("APP_KEY", APP_KEY);
+  await enforceRequired("APP_TITLE", APP_TITLE);
+  await enforceRequired("APP_FILENAME", APP_FILENAME);
+};
+
+const APPS_BASE_PATH = "/apps";
+const APPS_DB_FILE = path.join(APPS_DB_DIR, "./appsDB.json");
+const APPS_CONFIG_FILE = path.join(APPS_CONFIG_DIR, "./appsConfig.json");
+const IMPORT_MAP_FILE = path.join(IMPORT_MAP_DIR, "./import-map.json");
+
+const isAddingApp = () =>
+  Boolean(APP_KEY) && Boolean(APP_TITLE) && Boolean(APP_FILENAME);
 
 const saveImportMap = async (map) => {
   await fs.writeFile(IMPORT_MAP_FILE, JSON.stringify(map));
@@ -32,7 +68,7 @@ const loadStaticRoutes = async () => {
     const statics = await fs.readFile(STATIC_ROUTES_FILE);
     return JSON.parse(statics);
   } catch (err) {
-    console.warn(err, 'Returning empty statics routes');
+    console.warn(err, "Returning empty statics routes");
     return {};
   }
 };
@@ -57,7 +93,7 @@ const sortApps = (app1, app2) => {
 };
 
 const saveAppsArray = async () => {
-  if (SKIP_APP_CONFIG === 'true') {
+  if (SKIP_APP_CONFIG === "true") {
     return;
   }
   const db = await loadAppsDB();
@@ -66,13 +102,16 @@ const saveAppsArray = async () => {
 };
 
 const addApplication = async () => {
+  await enforceRequiredParameters();
+
   const routes = !APP_ROUTES
     ? null
-    : APP_ROUTES.split(',')
+    : APP_ROUTES.split(",")
         .map((route) => route.trim())
         .filter((route) => route.length > 0);
 
   const priority = Number.parseInt(APP_PRIORITY, 10);
+
   const appData = {
     name: APP_KEY,
     title: APP_TITLE,
@@ -81,7 +120,7 @@ const addApplication = async () => {
     filename: APP_FILENAME,
     description: APP_DESCRIPTION,
     version: APP_VERSION,
-    routes
+    routes,
   };
   const appDBEntry = { [APP_KEY]: appData };
   const db = await loadAppsDB();
@@ -110,7 +149,7 @@ const initializeFiles = async () => {
 //-------------------
 
 const convertAppToRoute = (app) => ({
-  [app.package]: `${APPS_BASE_PATH}/${app.name}/${app.filename}`
+  [app.package]: `${APPS_BASE_PATH}/${app.name}/${app.filename}`,
 });
 
 const constructImportMap = async () => {
@@ -132,5 +171,5 @@ const main = async () => {
 };
 
 main()
-  .then(() => console.log('DONE'))
+  .then(() => console.log("DONE"))
   .catch((err) => console.log(err));
