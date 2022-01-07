@@ -62,7 +62,7 @@ const isAddingApp = () =>
   Boolean(APP_KEY) && Boolean(APP_TITLE) && Boolean(APP_FILENAME);
 
 const saveImportMap = async (map) => {
-  await fs.writeFile(IMPORT_MAP_FILE, JSON.stringify(map));
+  await fs.writeFile(IMPORT_MAP_FILE, JSON.stringify(map, null, 4));
 };
 
 const loadStaticRoutes = async () => {
