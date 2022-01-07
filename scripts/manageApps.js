@@ -55,7 +55,7 @@ const enforceRequiredParameters = async () => {
 
 const APPS_BASE_PATH = "/apps";
 const APPS_DB_FILE = path.join(APPS_DB_DIR, "./appsDB.json");
-const APPS_CONFIG_FILE = path.join(APPS_CONFIG_DIR, "./appsConfig.json");
+const APPS_CONFIG_FILE = path.join(APPS_CONFIG_DIR, "./appConfig.json");
 const IMPORT_MAP_FILE = path.join(IMPORT_MAP_DIR, "./import-map.json");
 
 const isAddingApp = () =>
