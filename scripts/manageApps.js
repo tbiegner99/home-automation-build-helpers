@@ -8,7 +8,7 @@ const {
   APP_VERSION,
   APP_FILENAME,
   APP_ROUTES,
-  APP_ROUTES_EXACT,
+  APP_ROUTES_MATCH_MODE,
   APP_PRIORITY,
   APP_COMMIT,
   IS_MAIN,
@@ -27,7 +27,7 @@ console.log("Params passed:", {
   APP_VERSION,
   APP_FILENAME,
   APP_ROUTES,
-  APP_ROUTES_EXACT,
+  APP_ROUTES_MATCH_MODE,
   APP_PRIORITY,
   APP_COMMIT,
   IS_MAIN,
@@ -141,7 +141,7 @@ const addApplication = async () => {
     build: APP_COMMIT,
     routes: {
       routes,
-      exact: APP_ROUTES_EXACT === "true",
+      mode: APP_ROUTES_MATCH_MODE,
     },
   };
   console.log("ADDING APP", appData);
