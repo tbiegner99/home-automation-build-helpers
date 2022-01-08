@@ -10,6 +10,7 @@ const {
   APP_ROUTES,
   APP_PRIORITY,
   APP_COMMIT,
+  IS_MAIN,
   FUNCTION = "",
   SKIP_APP_CONFIG,
   APPS_DB_DIR = process.cwd(),
@@ -27,6 +28,7 @@ console.log("Params passed:", {
   APP_ROUTES,
   APP_PRIORITY,
   APP_COMMIT,
+  IS_MAIN,
   FUNCTION,
   SKIP_APP_CONFIG,
   APPS_DB_DIR,
@@ -102,7 +104,7 @@ const saveAppsArray = async () => {
   }
   const db = await loadAppsDB();
   const apps = Object.values(db)
-    .filter((app) => app.priority >= 0)
+    .filter((app) => !app.main)
     .sort(sortApps);
   await fs.writeFile(APPS_CONFIG_FILE, JSON.stringify(apps, null, 4));
 };
@@ -133,6 +135,7 @@ const addApplication = async () => {
     filename: APP_FILENAME,
     description: APP_DESCRIPTION,
     version: APP_VERSION,
+    main: IS_MAIN === "true",
     build: APP_COMMIT,
     routes,
   };
