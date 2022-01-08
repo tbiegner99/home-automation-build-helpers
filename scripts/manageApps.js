@@ -8,6 +8,7 @@ const {
   APP_VERSION,
   APP_FILENAME,
   APP_ROUTES,
+  APP_ROUTES_EXACT,
   APP_PRIORITY,
   APP_COMMIT,
   IS_MAIN,
@@ -26,6 +27,7 @@ console.log("Params passed:", {
   APP_VERSION,
   APP_FILENAME,
   APP_ROUTES,
+  APP_ROUTES_EXACT,
   APP_PRIORITY,
   APP_COMMIT,
   IS_MAIN,
@@ -137,7 +139,10 @@ const addApplication = async () => {
     version: APP_VERSION,
     main: IS_MAIN === "true",
     build: APP_COMMIT,
-    routes,
+    routes: {
+      routes,
+      exact: APP_ROUTES_EXACT === "true",
+    },
   };
   console.log("ADDING APP", appData);
   const appDBEntry = { [APP_KEY]: appData };
