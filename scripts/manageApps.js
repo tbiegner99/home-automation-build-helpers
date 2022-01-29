@@ -12,6 +12,7 @@ const {
   APP_PRIORITY,
   APP_COMMIT,
   APP_ARTIFACT_NAME,
+  APP_ICON,
   IS_MODULE,
   FUNCTION = "",
   SKIP_APP_CONFIG,
@@ -139,6 +140,7 @@ const addApplication = async () => {
     filename: APP_ARTIFACT_NAME || APP_FILENAME,
     description: APP_DESCRIPTION,
     version: APP_VERSION,
+    icon: APP_ICON,
     module: IS_MODULE === "true",
     build: APP_COMMIT,
     routes: {
