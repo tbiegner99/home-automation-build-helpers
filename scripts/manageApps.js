@@ -137,7 +137,9 @@ const addApplication = async () => {
     title: APP_TITLE,
     package: APP_KEY,
     priority: Number.isNaN(priority) ? 0 : priority,
-    filename: APP_ARTIFACT_NAME || APP_FILENAME,
+    filename: APP_ARTIFACT_NAME
+      ? `${APP_VERSION}/${APP_ARTIFACT_NAME}`
+      : APP_FILENAME,
     description: APP_DESCRIPTION,
     version: APP_VERSION,
     icon: APP_ICON,
