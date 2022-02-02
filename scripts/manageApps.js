@@ -13,6 +13,7 @@ const {
   APP_COMMIT,
   APP_ARTIFACT_NAME,
   APP_ICON,
+  APP_ROLE,
   IS_MODULE,
   FUNCTION = "",
   SKIP_APP_CONFIG,
@@ -145,6 +146,7 @@ const addApplication = async () => {
     icon: APP_ICON,
     module: IS_MODULE === "true",
     build: APP_COMMIT,
+    role: APP_ROLE || "app",
     routes: {
       routes,
       mode: APP_ROUTES_MATCH_MODE,
