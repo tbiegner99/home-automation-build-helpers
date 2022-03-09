@@ -1,0 +1,133 @@
+{
+    "navbar": {
+        "name": "navbar",
+        "title": "Nav Bar",
+        "package": "navbar",
+        "priority": -1,
+        "filename": "1.0.0_/navbar-app.js",
+        "description": "home automation app navbar",
+        "version": "1.0.0_",
+        "icon": "",
+        "module": false,
+        "build": "",
+        "role": "nav",
+        "routes": {
+            "routes": [
+                "C:/Program Files/Git/"
+            ],
+            "mode": "excludeExact"
+        }
+    },
+    "main": {
+        "name": "main",
+        "title": "Main",
+        "package": "main",
+        "priority": -1,
+        "filename": "1.0.0_/home-automation-main.js",
+        "description": "kareoke app",
+        "version": "1.0.0_",
+        "icon": "",
+        "module": true,
+        "build": "",
+        "role": "app",
+        "routes": {
+            "routes": [
+                "C:/Program Files/Git/"
+            ],
+            "mode": ""
+        }
+    },
+    "@tbiegner99/home-automation-main-ui": {
+        "name": "@tbiegner99/home-automation-main-ui",
+        "title": "Main",
+        "package": "@tbiegner99/home-automation-main-ui",
+        "priority": -1,
+        "filename": "1.0.0_/home-automation-main.js",
+        "description": "kareoke app",
+        "version": "1.0.0_",
+        "icon": "",
+        "module": true,
+        "build": "",
+        "role": "app",
+        "routes": {
+            "routes": [
+                "C:/Program Files/Git/"
+            ],
+            "mode": ""
+        }
+    },
+    "@tbiegner99/home-automation-components": {
+        "name": "@tbiegner99/home-automation-components",
+        "title": "Home Automation Components",
+        "package": "@tbiegner99/home-automation-components",
+        "priority": -1,
+        "filename": "1.0.6_/home-automation-components.system.js",
+        "description": "components for the home automation project",
+        "version": "1.0.6_",
+        "icon": "",
+        "module": true,
+        "build": "",
+        "role": "app",
+        "routes": {
+            "routes": null,
+            "mode": ""
+        }
+    },
+    "@tbiegner99/ui-app-components": {
+        "name": "@tbiegner99/ui-app-components",
+        "title": "Main",
+        "package": "@tbiegner99/ui-app-components",
+        "priority": -1,
+        "filename": "1.0.2_/ui-app-components.es.js",
+        "description": "application components for ui apps",
+        "version": "1.0.2_",
+        "icon": "",
+        "module": true,
+        "build": "",
+        "role": "app",
+        "routes": {
+            "routes": [
+                "C:/Program Files/Git/"
+            ],
+            "mode": ""
+        }
+    },
+    "@tbiegner99/home-automation-navbar": {
+        "name": "@tbiegner99/home-automation-navbar",
+        "title": "Nav Bar",
+        "package": "@tbiegner99/home-automation-navbar",
+        "priority": -1,
+        "filename": "1.0.0_/navbar-app.js",
+        "description": "home automation app navbar",
+        "version": "1.0.0_",
+        "icon": "",
+        "module": false,
+        "build": "",
+        "role": "nav",
+        "routes": {
+            "routes": [
+                "C:/Program Files/Git/"
+            ],
+            "mode": "excludeExact"
+        }
+    },
+    "@tbiegner99/home-automation-app-kareoke": {
+        "name": "@tbiegner99/home-automation-app-kareoke",
+        "title": "Kareoke",
+        "package": "@tbiegner99/home-automation-app-kareoke",
+        "priority": 10,
+        "filename": "1.0.0_/kareoke-app.js",
+        "description": "micro frun end that is independently deployable. A kareoke system frontend to pair with RTSP server",
+        "version": "1.0.0_",
+        "icon": "icon.svg",
+        "module": false,
+        "build": "",
+        "role": "app",
+        "routes": {
+            "routes": [
+                "C:/Program Files/Git/kareoke"
+            ],
+            "mode": ""
+        }
+    }
+}
